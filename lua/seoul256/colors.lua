@@ -1,7 +1,7 @@
 local seoul256 = {
 
 	white =         '#dfe0e0',
-	gray =          '#678667',
+	gray =          '#dfe0e0',
 	black =         '#dfe0e0',
 	red =           '#a07474',
 	green =         '#678568',
