@@ -1,10 +1,10 @@
-# 🌘 shaunsingh/seoul256.nvim
+# shaunsingh/seoul256.nvim
 
-## Modified version of Marko Cerovac's [Material.nvim](https://github.com/marko-cerovac/material.nvim), based off of the [seoul256 Theme](https://github.com/atomiks/seoul256-vscode-theme) for VSCode 
+## Based off of the [seoul256 Theme](https://github.com/junegunn/seoul256.vim) for Vim
 
-![preview github](https://user-images.githubusercontent.com/71196912/118175481-27755c80-b3fe-11eb-9d70-85a9f936c33d.png)
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/71196912/120390485-c0134400-c2fb-11eb-9322-0d467e2e14bf.png">
 
-## 🌠 Features
+## Features
 
 seoul256.nvim is meant to be a modern colorscheme written in lua for NeoVim that supports a lot of the new features
 added to NeoVim like built-in LSP and [TreeSitter](https://github.com/nvim-treesitter/nvim-treesitter)
@@ -37,7 +37,7 @@ added to NeoVim like built-in LSP and [TreeSitter](https://github.com/nvim-trees
 
 + Neovim >= 0.5.0
 
-## 🌙 Installation
+## Installation
 
 Install via your favourite package manager:
 ```vim
@@ -50,7 +50,7 @@ Plug 'shaunsingh/seoul256.nvim'
 use 'shaunsingh/seoul256.nvim'
 ```
 
-## 🌓 Usage
+## Usage
 
 Enable the colorscheme:
 ```vim 
@@ -115,6 +115,4 @@ let g:seoul256_disable_background = false
 -- Load the colorsheme
 colorscheme seoul256
 ```
-
-Original Readme: https://github.com/marko-cerovac/material.nvim/blob/pure-lua/README.md
 
