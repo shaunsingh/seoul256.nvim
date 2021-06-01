@@ -6,11 +6,11 @@ local seoul256 = {
 	red =           '#a07474',
 	green =         '#678568',
 	yellow =        '#c3a769',
-	paleblue =      '#67a9aa',
+	paleblue =      '#c78a69',
 	cyan =          '#c3a769',
 	blue =          '#84a4c1',
 	purple =        '#c66d86',
-	orange =        '#c78a69',
+	orange =        '#67a9aa',
 	pink =          '#d0a39f',
 
 	bg =            '#4c4c4c',
