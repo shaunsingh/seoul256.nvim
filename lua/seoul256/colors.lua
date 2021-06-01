@@ -1,8 +1,8 @@
 local seoul256 = {
 
 	white =         '#dfe0e0',
-	gray =          '#75767c',
-	black =         '#75767c',
+	gray =          '#678667',
+	black =         '#dfe0e0',
 	red =           '#a07474',
 	green =         '#678568',
 	yellow =        '#c3a769',
@@ -16,7 +16,7 @@ local seoul256 = {
 	bg =            '#4c4c4c',
 	bg_alt =        '#545454',
 	fg =            '#dfe0e0',
-	text =          '#75767c',
+	text =          '#678667',
 	comments =      '#678667',
 	selection =     '#347474',
 	contrast =      '#d4d4d4',
