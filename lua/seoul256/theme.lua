@@ -10,7 +10,7 @@ theme.loadSyntax = function ()
 		StorageClass =				{ fg = seoul256.cyan }, -- static, register, volatile, etc.
 		Structure =					{ fg = seoul256.puple }, -- struct, union, enum, etc.
 		Constant =					{ fg = seoul256.yellow }, -- any constant
-		String =					{ fg = seoul256.green, bg = seoul256.none, style= 'italic' }, -- Any string
+		String =					{ fg = seoul256.string, bg = seoul256.none, style= 'italic' }, -- Any string
 		Character =					{ fg = seoul256.orange }, -- any character constant: 'c', '\n'
 		Number =					{ fg = seoul256.orange }, -- a number constant: 5
 		Boolean =					{ fg = seoul256.orange }, -- a boolean constant: TRUE, false
@@ -54,9 +54,9 @@ theme.loadSyntax = function ()
 
 	-- Italic comments
 	if vim.g.seoul256_italic_comments == true then
-		syntax.Comment =		{fg = seoul256.comments, bg = seoul256.none, style = 'italic'} -- italic comments
+		syntax.Comment =		{fg = seoul256.green, bg = seoul256.none, style = 'italic'} -- italic comments
 	else
-		syntax.Comment =		{fg = seoul256.comments} -- normal comments
+		syntax.Comment =		{fg = seoul256.green} -- normal comments
 	end
 
 	-- Italic Keywords
@@ -126,9 +126,9 @@ theme.loadEditor = function ()
 		SpellCap =				{ fg = seoul256.blue, bg = seoul256.none, style = 'italic,undercurl' },
 		SpellLocal =			{ fg = seoul256.cyan, bg = seoul256.none, style = 'italic,undercurl' },
 		SpellRare =				{ fg = seoul256.purple, bg = seoul256.none, style = 'italic,undercurl' },
-		StatusLine =			{ fg = seoul256.fg, bg = seoul256.bg_alt },
+		StatusLine =			{ fg = seoul256.fg, bg = seoul256.contrast },
 		StatusLineNC =  		{ fg = seoul256.text, bg = seoul256.disabled },
-		StatusLineTerm =		{ fg = seoul256.fg, bg = seoul256.bg_alt },
+		StatusLineTerm =		{ fg = seoul256.fg, bg = seoul256.contrast },
 		StatusLineTermNC =		{ fg = seoul256.text, bg = seoul256.disabled },
 		TabLineFill =			{ fg = seoul256.fg },
 		TablineSel =			{ fg = seoul256.bg, bg = seoul256.accent },
@@ -232,7 +232,7 @@ theme.loadTreeSitter = function ()
         TSPunctDelimiter =          { fg = seoul256.cyan }, -- For delimiters ie: `.`
         TSPunctBracket =            { fg = seoul256.cyan }, -- For brackets and parens.
         TSPunctSpecial =            { fg = seoul256.cyan }, -- For special punctutation that does not fall in the catagories before.
-        TSString =                  { fg = seoul256.green },    -- For strings.
+        TSString =                  { fg = seoul256.string },    -- For strings.
         TSStringRegex =             { fg = seoul256.blue }, -- For regexes.
         TSStringEscape =            { fg = seoul256.disabled }, -- For escape characters within a string.
         TSSymbol =                  { fg = seoul256.yellow },    -- For identifiers referring to symbols or atoms.
@@ -254,9 +254,9 @@ theme.loadTreeSitter = function ()
 
     -- Italic comments
     if vim.g.seoul256_italic_comments == true then
-        treesitter.TSComment=                  { fg = seoul256.comments , bg = seoul256.none, style = 'italic' }    -- For comment blocks.
+        treesitter.TSComment=                  { fg = seoul256.green , bg = seoul256.none, style = 'italic' }    -- For comment blocks.
     else
-        treesitter.TSComment=                  { fg = seoul256.comments }    -- For comment blocks.
+        treesitter.TSComment=                  { fg = seoul256.green }    -- For comment blocks.
     end
 
     if vim.g.seoul256_italic_keywords == true then
@@ -343,7 +343,7 @@ theme.loadPlugins = function()
         diffOldFile =                           { fg = seoul256.yelow },
         diffNewFile =                           { fg = seoul256.orange },
         diffFile =                              { fg = seoul256.blue },
-        diffLine =                              { fg = seoul256.comments },
+        diffLine =                              { fg = seoul256.green },
         diffIndexLine =                         { fg = seoul256.purple },
 
         -- Neogit
