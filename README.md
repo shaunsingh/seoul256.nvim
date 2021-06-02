@@ -105,13 +105,13 @@ require('seoul256').set()
 
 ```vim
 " Example config in Vim-Script
-let g:seoul256_italic_comments = true
-let g:seoul256_italic_keywords = true
-let g:seoul256_italic_functions = true
-let g:seoul256_italic_variables = false
-let g:seoul256_contrast = true
-let g:seoul256_borders = false 
-let g:seoul256_disable_background = false
+let g:seoul256_italic_comments = v:true
+let g:seoul256_italic_keywords = v:true
+let g:seoul256_italic_functions = v:true
+let g:seoul256_italic_variables = v:false
+let g:seoul256_contrast = v:true
+let g:seoul256_borders = v:false 
+let g:seoul256_disable_background = v:false
 
 -- Load the colorsheme
 colorscheme seoul256
