@@ -410,7 +410,7 @@ theme.loadPlugins = function()
         DiagnosticInformation =                 { fg = seoul256.paleblue },
         DiagnosticHint =                        { fg = seoul256.purple },
         DiagnosticTruncateLine =                { fg = seoul256.fg },
-        LspFloatWinNormal =                     { bg = seoul256.contrast },
+        LspFloatWinNormal =                     { bg = seoul256.bg },
         LspFloatWinBorder =                     { fg = seoul256.purple },
         LspSagaBorderTitle =                    { fg = seoul256.cyan },
         LspSagaHoverBorder =                    { fg = seoul256.paleblue },
