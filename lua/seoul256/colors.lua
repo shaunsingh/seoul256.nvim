@@ -27,7 +27,7 @@ local seoul256 = {
 	disabled =      '#414863',
 	cursor =        '#d8d8d8',
 	accent =        '#ce8f6b',
-    indentline =    '#555555'
+    indentline =    '#555555',
 
 	error =         '#a07474',
 	link =          '#67a9aa',
