@@ -436,9 +436,9 @@ theme.loadPlugins = function()
         SneakScope =                            { bg = seoul256.selection },
 
         -- Indent Blankline
-        IndentBlanklineChar =                   { fg = seoul256.highlight },
-        IndentBlanklineContextChar =            { fg = seoul256.disabled },
-	
+        IndentBlanklineChar =                   { fg = seoul256.indentline },
+        IndentBlanklineContextChar =            { fg = seoul256.indentline },
+
 	 -- Nvim dap
          DapBreakpoint =                         { fg = seoul256.red },
          DapStopped =                            { fg = seoul256.green },
