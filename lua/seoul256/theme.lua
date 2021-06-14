@@ -104,7 +104,7 @@ theme.loadEditor = function ()
 		DiffText =				{ fg = seoul256.yellow, bg = seoul256.none, style = 'reverse' }, -- diff mode: Changed text within a changed line
 		EndOfBuffer =			{ fg = seoul256.disabled },
 		ErrorMsg =				{ fg = seoul256.none },
-		Folded =				{ fg = seoul256.disabled, bg = seoul256.none, style = 'italic' },
+		Folded =				{ fg = seoul256.green, bg = seoul256.bg_alt, style = 'italic' },
 		FoldColumn =			{ fg = seoul256.blue },
 		IncSearch =				{ fg = seoul256.highlight, bg = seoul256.white, style = 'reverse' },
 		LineNr =				{ fg = seoul256.line_numbers },
