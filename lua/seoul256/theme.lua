@@ -78,9 +78,9 @@ theme.loadSyntax = function ()
   end
 
   if vim.g.seoul256_italic_variables == true then
-    syntax.Identifier =	{fg = seoul256.gray, bg = seoul256.none, style = 'italic'}; -- any variable name
+    syntax.Identifier =	{fg = seoul256.pink, bg = seoul256.none, style = 'italic'}; -- any variable name
   else
-    syntax.Identifier = {fg = seoul256.gray}; -- any variable name
+    syntax.Identifier = {fg = seoul256.pink}; -- any variable name
   end
 
   return syntax
