@@ -53,37 +53,37 @@ theme.loadSyntax = function ()
 	-- Options:
 
 	-- Italic comments
-	if vim.g.seoul256_italic_comments == true then
-		syntax.Comment =		{fg = seoul256.green, bg = seoul256.none, style = 'italic'} -- italic comments
-	else
-		syntax.Comment =		{fg = seoul256.green} -- normal comments
-	end
+  if vim.g.seoul256_italic_comments == true then
+    syntax.Comment =		{fg = seoul256.green, bg = seoul256.none, style = 'italic'} -- italic comments
+  else
+    syntax.Comment =		{fg = seoul256.green} -- normal comments
+  end
 
-	-- Italic Keywords
-	if vim.g.seoul256_italic_keywords == true then
-		syntax.Conditional =		{fg = seoul256.purple, bg = seoul256.none, style = 'italic'} -- italic if, then, else, endif, switch, etc.
-		syntax.Keyword =			{fg = seoul256.purple, bg = seoul256.none, style = 'italic'} -- italic for, do, while, etc.
-		syntax.Repeat =				{fg = seoul256.purple, bg = seoul256.none, style = 'italic'} -- italic any other keyword
-	else
-		syntax.Conditional =		{fg = seoul256.purple} -- normal if, then, else, endif, switch, etc.
-		syntax.Keyword =			{fg = seoul256.purple} -- normal for, do, while, etc.
-		syntax.Repeat =				{fg = seoul256.purple} -- normal any other keyword
-	end
+  -- Italic Keywords
+  if vim.g.seoul256_italic_keywords == true then
+    syntax.Conditional =		{fg = seoul256.purple, bg = seoul256.none, style = 'italic'} -- italic if, then, else, endif, switch, etc.
+    syntax.Keyword =			{fg = seoul256.purple, bg = seoul256.none, style = 'italic'} -- italic for, do, while, etc.
+    syntax.Repeat =				{fg = seoul256.purple, bg = seoul256.none, style = 'italic'} -- italic any other keyword
+  else
+    syntax.Conditional =		{fg = seoul256.purple} -- normal if, then, else, endif, switch, etc.
+    syntax.Keyword =			{fg = seoul256.purple} -- normal for, do, while, etc.
+    syntax.Repeat =				{fg = seoul256.purple} -- normal any other keyword
+  end
 
-	-- Italic Function names
-	if vim.g.seoul256_italic_functions == true then
-		syntax.Function =		{fg = seoul256.blue, bg = seoul256.none, style = 'italic'} -- italic funtion names
-	else
-		syntax.Function =		{fg = seoul256.blue} -- normal function names
-	end
+  -- Italic Function names
+  if vim.g.seoul256_italic_functions == true then
+    syntax.Function =		{fg = seoul256.blue, bg = seoul256.none, style = 'italic'} -- italic funtion names
+  else
+    syntax.Function =		{fg = seoul256.blue} -- normal function names
+  end
 
-	if vim.g.seoul256_italic_variables == true then
-		Identifier =				{fg = seoul256.gray, bg = seoul256.none, style = 'italic'}; -- any variable name
-    else
-		Identifier =				{fg = seoul256.gray}; -- any variable name
-    end
+  if vim.g.seoul256_italic_variables == true then
+    syntax.Identifier =	{fg = seoul256.gray, bg = seoul256.none, style = 'italic'}; -- any variable name
+  else
+    syntax.Identifier = {fg = seoul256.gray}; -- any variable name
+  end
 
-    return syntax
+  return syntax
 
 end
 
