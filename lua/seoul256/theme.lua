@@ -151,6 +151,7 @@ theme.loadEditor = function ()
         -- Directory names (and other special names in listings)
         Directory = {fg = seoul256.blue, bg = seoul256.none},
         EndOfBuffer = {fg = seoul256.disabled},
+        -- Error messages on the command line
         ErrorMsg = {fg = seoul256.none},
         FoldColumn = {fg = seoul256.blue},
         Folded = {fg = seoul256.green, bg = seoul256.bg_alt, style = 'italic'},
@@ -162,7 +163,7 @@ theme.loadEditor = function ()
         MoreMsg = {fg = seoul256.accent},
         NonText = {fg = seoul256.disabled},
         Normal = {fg = seoul256.fg, bg = seoul256.bg},
-        -- Normal text and background color
+        -- Normal text in floating windows
         NormalFloat = {fg = seoul256.fg, bg = seoul256.float},
         NormalMode = {fg = seoul256.accent, bg = seoul256.none, style = 'reverse'},
         Pmenu = {fg = seoul256.text, bg = seoul256.contrast},
@@ -214,6 +215,14 @@ theme.loadEditor = function ()
     -- Remove window split borders
     if vim.g.seoul256_borders == true then
         editor.VertSplit = {fg = seoul256.border}
+    end
+
+    -- Remove background colors
+    if vim.g.seoul256_disable_background == true then
+        editor.Normal = {fg = seoul256.fg, bg = seoul256.none}
+        editor.SignColumn = {fg = seoul256.fg, bg = seoul256.none}
+        editor.NormalFloat = {fg = seoul256.fg, bg = seoul256.none}
+        editor.Pmenu = {fg = seoul256.text, bg = seoul256.none}
     end
 
     return editor
