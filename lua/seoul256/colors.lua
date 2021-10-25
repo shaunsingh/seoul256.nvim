@@ -46,4 +46,10 @@ else
     seoul256.float = seoul256.bg_alt
 end
 
+
+if vim.g.seoul256_disable_background == true then
+    seoul256.bg = seoul256.none
+    seoul256.float = seoul256.none
+end
+
 return seoul256
