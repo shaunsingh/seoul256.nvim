@@ -5,8 +5,4 @@
 local util = require('seoul256.util')
 
 -- Load the theme
-local set = function ()
-    util.load()
-end
-
-return { set = set }
+util.load()

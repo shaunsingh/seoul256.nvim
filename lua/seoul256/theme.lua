@@ -127,6 +127,8 @@ end
 
 theme.loadEditor = function ()
     -- Editor highlight groups
+
+    -- :h highlight-groups for more informations
     local editor = {
         --  Used for the columns set with 'colorcolumn'
         ColorColumn = {fg = seoul256.none, bg = seoul256.active},
@@ -559,6 +561,10 @@ theme.loadPlugins = function()
         DapBreakpoint = {fg = seoul256.red},
         DapStopped = {fg = seoul256.green},
     }
+
+    if vim.g.seoul256_disable_background == true then
+        plugins.TelescopeNormal = {fg = seoul256.fg, bg = seoul256.none}
+    end
 
     return plugins
 end
