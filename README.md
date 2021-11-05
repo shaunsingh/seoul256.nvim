@@ -61,7 +61,9 @@ colorscheme seoul256
 
 ```lua
 --Lua:
-require('seoul256').set()
+require('seoul256')
+-- or:
+vim.g.colors_name = 'seoul256'
 ```
 
 To enable the `seoul256` theme for `Lualine`, simply specify it in your lualine settings:
@@ -100,7 +102,7 @@ vim.g.seoul256_borders = false
 vim.g.seoul256_disable_background = false
 
 -- Load the colorscheme
-require('seoul256').set()
+require('seoul256')
 ```
 
 ```vim
