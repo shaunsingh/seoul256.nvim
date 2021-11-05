@@ -382,4 +382,8 @@ if vim.g.seoul256_borders == true then
     M.editor.VertSplit = { fg = colors.border }
 end
 
+if vim.g.seoul256_hl_current_line == true then
+    M.editor.CursorLine = { fg = colors.none, bg = colors.active }
+end
+
 return M
