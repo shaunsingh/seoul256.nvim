@@ -1,460 +1,389 @@
-local seoul256 = require("seoul256.colors")
+local colors = require("seoul256/colors")
 
-local theme = {}
+local M = {}
 
-theme.loadSyntax = function ()
-    -- Syntax highlight groups
+-- Syntax highlight groups
+-- Type `:h syntax` for more informations
+M.syntax = {
+    Boolean = { fg = colors.orange },
+    Character = { fg = colors.orange },
+    Comment = { fg = colors.green },
+    Conditional = { fg = colors.purple },
+    Constant = { fg = colors.yellow },
+    Debug = { fg = colors.red },
+    Define = { fg = colors.pink },
+    Delimiter = { fg = colors.cyan },
+    Error = { fg = colors.error, bg = colors.none, style = "underline,bold" },
+    Exception = { fg = colors.cyan },
+    Float = { fg = colors.orange },
+    Function = { fg = colors.blue },
+    Identifier = { fg = colors.pink },
+    Ignore = { fg = colors.disabled },
+    Include = { fg = colors.blue },
+    Keyword = { fg = colors.purple },
+    Label = { fg = colors.purple },
+    Macro = { fg = colors.cyan },
+    Number = { fg = colors.orange },
+    Operator = { fg = colors.cyan },
+    PreCondit = { fg = colors.cyan },
+    PreProc = { fg = colors.purple },
+    Repeat = { fg = colors.purple },
+    Special = { fg = colors.red },
+    SpecialChar = { fg = colors.pink },
+    SpecialComment = { fg = colors.gray },
+    Statement = { fg = colors.pink },
+    StorageClass = { fg = colors.cyan },
+    String = { fg = colors.string, bg = colors.none, style = "italic" },
+    Structure = { fg = colors.puple },
+    Tag = { fg = colors.red },
+    Todo = { fg = colors.yellow, bg = colors.none, style = "bold,italic" },
+    Type = { fg = colors.purple },
+    Typedef = { fg = colors.red },
+    Underlined = { fg = colors.link, bg = colors.none, style = "underline" },
+}
 
-	local syntax = {
-		Type =						{ fg = seoul256.purple }, -- int, long, char, etc.
-		StorageClass =				{ fg = seoul256.cyan }, -- static, register, volatile, etc.
-		Structure =					{ fg = seoul256.puple }, -- struct, union, enum, etc.
-		Constant =					{ fg = seoul256.yellow }, -- any constant
-		String =					{ fg = seoul256.string, bg = seoul256.none, style= 'italic' }, -- Any string
-		Character =					{ fg = seoul256.orange }, -- any character constant: 'c', '\n'
-		Number =					{ fg = seoul256.orange }, -- a number constant: 5
-		Boolean =					{ fg = seoul256.orange }, -- a boolean constant: TRUE, false
-		Float =						{ fg = seoul256.orange }, -- a floating point constant: 2.3e10
-		Statement =					{ fg = seoul256.pink }, -- any statement
-		Label =						{ fg = seoul256.purple }, -- case, default, etc.
-		Operator =					{ fg = seoul256.cyan }, -- sizeof", "+", "*", etc.
-		Exception =					{ fg = seoul256.cyan }, -- try, catch, throw
-		PreProc =					{ fg = seoul256.purple }, -- generic Preprocessor
-		Include =					{ fg = seoul256.blue }, -- preprocessor #include
-		Define =					{ fg = seoul256.pink }, -- preprocessor #define
-		Macro =						{ fg = seoul256.cyan }, -- same as Define
-		Typedef =					{ fg = seoul256.red }, -- A typedef
-		PreCondit =					{ fg = seoul256.cyan }, -- preprocessor #if, #else, #endif, etc.
-		Special =					{ fg = seoul256.red }, -- any special symbol
-		SpecialChar =				{ fg = seoul256.pink }, -- special character in a constant
-		Tag =						{ fg = seoul256.red }, -- you can use CTRL-] on this
-		Delimiter =					{ fg = seoul256.cyan }, -- character that needs attention like , or .
-		SpecialComment =			{ fg = seoul256.gray }, -- special things inside a comment
-		Debug =						{ fg = seoul256.red }, -- debugging statements
-		Underlined =				{ fg = seoul256.link, bg = seoul256.none, style = 'underline' }, -- text that stands out, HTML links
-		Ignore =					{ fg = seoul256.disabled }, -- left blank, hidden
-		Error =						{ fg = seoul256.error, bg = seoul256.none, style = 'bold,underline' }, -- any erroneous construct
-		Todo =						{ fg = seoul256.yellow, bg = seoul256.none, style = 'bold,italic' }, -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+-- Editor highlight groups
+-- Type `:h highlight-groups` for more informations
+M.editor = {
+    ColorColumn = { fg = colors.none, bg = colors.active },
+    Conceal = { fg = colors.disabled },
+    Cursor = { fg = colors.cursor, bg = colors.none, style = "reverse" },
+    lCursor = {}, -- TODO
+    CursorColumn = { fg = colors.none, bg = colors.active },
+    CursorIM = { fg = colors.cursor, bg = colors.none, style = "reverse" },
+    CursorLine = { fg = colors.none, bg = colors.none },
+    CursorLineNr = { fg = colors.accent },
+    DiffAdd = { fg = colors.green, bg = colors.none, style = "reverse" },
+    DiffChange = { fg = colors.orange, bg = colors.none, style = "reverse" },
+    DiffDelete = { fg = colors.red, bg = colors.none, style = "reverse" },
+    DiffText = { fg = colors.yellow, bg = colors.none, style = "reverse" },
+    Directory = { fg = colors.blue, bg = colors.none },
+    EndOfBuffer = { fg = colors.disabled },
+    ErrorMsg = { fg = colors.none },
+    FoldColumn = { fg = colors.blue },
+    Folded = { fg = colors.green, bg = colors.bg_alt, style = "italic" },
+    IncSearch = { fg = colors.highlight, bg = colors.white, style = "reverse" },
+    LineNr = { fg = colors.line_numbers },
+    MatchParen = { fg = colors.yellow, bg = colors.none, style = "bold" },
+    ModeMsg = { fg = colors.accent },
+    MoreMsg = { fg = colors.accent },
+    MsgArea = {}, -- TODO
+    MsgSeparator = {}, -- TODO
+    NonText = { fg = colors.disabled },
+    Normal = { fg = colors.fg, bg = colors.bg },
+    NormalFloat = { fg = colors.fg, bg = colors.float },
+    NormalNC = {}, -- TODO
+    Pmenu = { fg = colors.text, bg = colors.contrast },
+    PmenuSbar = { fg = colors.text, bg = colors.contrast },
+    PmenuSel = { fg = colors.accent, bg = colors.active },
+    PmenuThumb = { fg = colors.fg, bg = colors.accent },
+    Question = { fg = colors.green },
+    QuickFixLine = { fg = colors.highlight, bg = colors.white, style = "reverse" },
+    Search = { fg = colors.highlight, bg = colors.white, style = "reverse" },
+    SignColumn = { fg = colors.fg, bg = colors.bg },
+    SpecialKey = { fg = colors.purple },
+    SpellBad = { fg = colors.red, bg = colors.none, style = "undercurl,italic" },
+    SpellCap = { fg = colors.blue, bg = colors.none, style = "undercurl,italic" },
+    SpellLocal = { fg = colors.cyan, bg = colors.none, style = "undercurl,italic" },
+    SpellRare = { fg = colors.purple, bg = colors.none, style = "undercurl,italic" },
+    StatusLine = { fg = colors.fg, bg = colors.bg_alt },
+    StatusLineNC = { fg = colors.text, bg = colors.disabled },
+    Substitute = {}, -- TODO
+    TabLineFill = { fg = colors.fg },
+    Tabline = { fg = colors.fg },
+    TablineSel = { fg = colors.bg, bg = colors.accent },
+    TermCursor = {}, -- TODO
+    TermCursorNC = {}, -- TODO
+    Title = { fg = colors.green, bg = colors.none, style = "bold" },
+    VertSplit = { fg = colors.bg },
+    Visual = { fg = colors.none, bg = colors.selection },
+    VisualNOS = { fg = colors.none, bg = colors.selection },
+    WarningMsg = { fg = colors.yellow },
+    Whitespace = {}, -- TODO
+    WildMenu = { fg = colors.orange, bg = colors.none, style = "bold" },
 
-        htmlLink = { fg = seoul256.link, style = "underline" },
-        htmlH1 = { fg = seoul256.cyan, style = "bold" },
-        htmlH2 = { fg = seoul256.red, style = "bold" },
-        htmlH3 = { fg = seoul256.green, style = "bold" },
-        htmlH4 = { fg = seoul256.yellow, style = "bold" },
-        htmlH5 = { fg = seoul256.purple, style = "bold" },
-        markdownH1 = { fg = seoul256.cyan, style = "bold" },
-        markdownH2 = { fg = seoul256.red, style = "bold" },
-        markdownH3 = { fg = seoul256.green, style = "bold" },
-        markdownH1Delimiter = { fg = seoul256.cyan },
-        markdownH2Delimiter = { fg = seoul256.red },
-        markdownH3Delimiter = { fg = seoul256.green },
-	}
+    -- GUI only
+    Menu = {},
+    Scrollbar = {},
+    Tooltip = {},
+}
 
-	-- Options:
+-- TreeSitter highlight groups
+-- Type `:h nvim-treesitter-highlights` for more informations
+M.treesitter = {
+    TSAttribute = { fg = colors.yellow },
+    TSBoolean = { fg = colors.orange },
+    TSCharacter = { fg = colors.orange },
+    TSComment = { fg = colors.green },
+    TSConditional = { fg = colors.purple },
+    TSConstBuiltin = { fg = colors.blue },
+    TSConstMacro = { fg = colors.blue },
+    TSConstant = { fg = colors.yellow },
+    TSConstructor = { fg = colors.purple },
+    TSDanger = {}, -- TODO
+    TSEmphasis = { fg = colors.paleblue },
+    TSEnvironment = {}, -- TODO
+    TSEnvironmentName = {}, -- TODO
+    TSError = { fg = colors.error },
+    TSException = { fg = colors.yellow },
+    TSField = { fg = colors.gray },
+    TSFloat = { fg = colors.red },
+    TSFuncBuiltin = { fg = colors.cyan },
+    TSFuncMacro = { fg = colors.blue },
+    TSFunction = { fg = colors.blue },
+    TSInclude = { fg = colors.cyan },
+    TSKeyword = { fg = colors.purple },
+    TSKeywordFunction = { fg = colors.purple },
+    TSKeywordOperator = {}, -- TODO
+    TSKeywordReturn = {}, -- TODO
+    TSLabel = { fg = colors.red },
+    TSLiteral = { fg = colors.fg },
+    TSMath = {}, -- TODO
+    TSMethod = { fg = colors.blue },
+    TSNamespace = { fg = colors.yellow },
+    TSNone = {}, -- TODO
+    TSNote = {}, -- TODO
+    TSNumber = { fg = colors.orange },
+    TSOperator = { fg = colors.cyan },
+    TSParameter = { fg = colors.paleblue },
+    TSParameterReference = { fg = colors.paleblue },
+    TSProperty = { fg = colors.paleblue },
+    TSPunctBracket = { fg = colors.cyan },
+    TSPunctDelimiter = { fg = colors.cyan },
+    TSPunctSpecial = { fg = colors.cyan },
+    TSRepeat = { fg = colors.purple },
+    TSStrike = {}, -- TODO
+    TSString = { fg = colors.string },
+    TSStringEscape = { fg = colors.disabled },
+    TSStringRegex = { fg = colors.blue },
+    TSStringSpecial = {}, -- TODO
+    TSStrong = {}, -- TODO
+    TSSymbol = { fg = colors.yellow },
+    TSTag = { fg = colors.red },
+    TSTagAttribute = {}, -- TODO
+    TSTagDelimiter = { fg = colors.yellow },
+    TSText = { fg = colors.text },
+    TSTextReference = { fg = colors.yellow }, -- FIXME ???
+    TSTitle = { fg = colors.paleblue, bg = colors.none, style = "bold" },
+    TSType = { fg = colors.purple },
+    TSTypeBuiltin = { fg = colors.purple },
+    TSURI = { fg = colors.link },
+    TSUnderline = { fg = colors.fg, bg = colors.none, style = "underline" },
+    TSVariable = { fg = colors.gray },
+    TSVariableBuiltin = { fg = colors.gray },
+    TSWarning = {}, -- TODO
+}
 
-	-- Italic comments
-  if vim.g.seoul256_italic_comments == true then
-    syntax.Comment =		{fg = seoul256.green, bg = seoul256.none, style = 'italic'} -- italic comments
-  else
-    syntax.Comment =		{fg = seoul256.green} -- normal comments
-  end
+-- Lsp highlight groups
+-- Type `:h lsp-highlight` for more informations
+M.lsp = {
+    LspCodeLens = {}, -- TODO
+    LspDiagnosticsDefaultError = { fg = colors.error },
+    LspDiagnosticsDefaultHint = { fg = colors.purple },
+    LspDiagnosticsDefaultInformation = { fg = colors.paleblue },
+    LspDiagnosticsDefaultWarning = { fg = colors.yellow },
+    LspDiagnosticsFloatingError = { fg = colors.error },
+    LspDiagnosticsFloatingHint = { fg = colors.purple },
+    LspDiagnosticsFloatingInformation = { fg = colors.paleblue },
+    LspDiagnosticsFloatingWarning = { fg = colors.yellow },
+    LspDiagnosticsSignError = { fg = colors.error },
+    LspDiagnosticsSignHint = { fg = colors.purple },
+    LspDiagnosticsSignInformation = { fg = colors.paleblue },
+    LspDiagnosticsSignWarning = { fg = colors.yellow },
+    LspDiagnosticsUnderlineError = { style = "undercurl", sp = colors.error },
+    LspDiagnosticsUnderlineHint = { style = "undercurl", sp = colors.paleblue },
+    LspDiagnosticsUnderlineInformation = { style = "undercurl", sp = colors.paleblue },
+    LspDiagnosticsUnderlineWarning = { style = "undercurl", sp = colors.yellow },
+    LspDiagnosticsVirtualTextError = { fg = colors.error },
+    LspDiagnosticsVirtualTextHint = { fg = colors.purple },
+    LspDiagnosticsVirtualTextInformation = { fg = colors.paleblue },
+    LspDiagnosticsVirtualTextWarning = { fg = colors.yellow },
+    LspReferenceRead = { fg = colors.accent, bg = colors.highlight },
+    LspReferenceText = { fg = colors.accent, bg = colors.highlight },
+    LspReferenceWrite = { fg = colors.accent, bg = colors.highlight },
+}
 
-  -- Italic Keywords
-  if vim.g.seoul256_italic_keywords == true then
-    syntax.Conditional =		{fg = seoul256.purple, bg = seoul256.none, style = 'italic'} -- italic if, then, else, endif, switch, etc.
-    syntax.Keyword =			{fg = seoul256.purple, bg = seoul256.none, style = 'italic'} -- italic for, do, while, etc.
-    syntax.Repeat =				{fg = seoul256.purple, bg = seoul256.none, style = 'italic'} -- italic any other keyword
-  else
-    syntax.Conditional =		{fg = seoul256.purple} -- normal if, then, else, endif, switch, etc.
-    syntax.Keyword =			{fg = seoul256.purple} -- normal for, do, while, etc.
-    syntax.Repeat =				{fg = seoul256.purple} -- normal any other keyword
-  end
+-- Plugins highlight groups
+M.plugins = {
+    LspTrouble = {
+        LspTroubleText = { fg = colors.text },
+        LspTroubleCount = { fg = colors.purple, bg = colors.active },
+        LspTroubleNormal = { fg = colors.fg, bg = colors.sidebar },
+    },
+    Diff = {
+        diffAdded = { fg = colors.green },
+        diffRemoved = { fg = colors.red },
+        diffChanged = { fg = colors.yellow },
+        diffOldFile = { fg = colors.yellow },
+        diffNewFile = { fg = colors.orange },
+        diffFile = { fg = colors.blue },
+        diffLine = { fg = colors.green },
+        diffIndexLine = { fg = colors.purple },
+    },
 
-  -- Italic Function names
-  if vim.g.seoul256_italic_functions == true then
-    syntax.Function =		{fg = seoul256.blue, bg = seoul256.none, style = 'italic'} -- italic funtion names
-  else
-    syntax.Function =		{fg = seoul256.blue} -- normal function names
-  end
+    Neogit = {
+        NeogitBranch = { fg = colors.paleblue },
+        NeogitRemote = { fg = colors.purple },
+        NeogitHunkHeader = { fg = colors.fg, bg = colors.highlight },
+        NeogitHunkHeaderHighlight = { fg = colors.blue, bg = colors.contrast },
+        NeogitDiffContextHighlight = { fg = colors.text, bg = colors.contrast },
+        NeogitDiffDeleteHighlight = { fg = colors.red },
+        NeogitDiffAddHighlight = { fg = colors.green },
+    },
 
-  if vim.g.seoul256_italic_variables == true then
-    syntax.Identifier =	{fg = seoul256.pink, bg = seoul256.none, style = 'italic'}; -- any variable name
-  else
-    syntax.Identifier = {fg = seoul256.pink}; -- any variable name
-  end
+    GitGutter = {
+        GitGutterAdd = { fg = colors.green },
+        GitGutterChange = { fg = colors.yellow },
+        GitGutterDelete = { fg = colors.red },
+    },
 
-  return syntax
+    GitSigns = {
+        GitSignsAdd = { fg = colors.green },
+        GitSignsAddNr = { fg = colors.green },
+        GitSignsAddLn = { fg = colors.green },
+        GitSignsChange = { fg = colors.yellow },
+        GitSignsChangeNr = { fg = colors.yellow },
+        GitSignsChangeLn = { fg = colors.yellow },
+        GitSignsDelete = { fg = colors.red },
+        GitSignsDeleteNr = { fg = colors.red },
+        GitSignsDeleteLn = { fg = colors.red },
+    },
 
+    Telescope = {
+        TelescopePromptBorder = { fg = colors.cyan },
+        TelescopeResultsBorder = { fg = colors.purple },
+        TelescopePreviewBorder = { fg = colors.green },
+        TelescopeSelectionCaret = { fg = colors.purple },
+        TelescopeSelection = { fg = colors.purple },
+        TelescopeMatching = { fg = colors.cyan },
+        TelescopeNormal = { fg = colors.fg, bg = colors.float },
+    },
+
+    NvimTree = {
+        NvimTreeNormal = { fg = colors.fg, bg = colors.sidebar },
+        NvimTreeRootFolder = { fg = colors.blue, style = "bold" },
+        NvimTreeGitDirty = { fg = colors.yellow },
+        NvimTreeGitNew = { fg = colors.green },
+        NvimTreeImageFile = { fg = colors.yellow },
+        NvimTreeExecFile = { fg = colors.green },
+        NvimTreeSpecialFile = { fg = colors.purple, style = "underline" },
+        NvimTreeFolderName = { fg = colors.paleblue },
+        NvimTreeEmptyFolderName = { fg = colors.disabled },
+        NvimTreeFolderIcon = { fg = colors.accent },
+        NvimTreeIndentMarker = { fg = colors.disabled },
+
+        -- TODO not sure this goes here
+        LspDiagnosticsError = { fg = colors.error },
+        LspDiagnosticsWarning = { fg = colors.yellow },
+        LspDiagnosticsInformation = { fg = colors.paleblue },
+        LspDiagnosticsHint = { fg = colors.purple },
+    },
+
+    WhichKey = {
+        WhichKey = { fg = colors.accent, style = "bold" },
+        WhichKeyGroup = { fg = colors.text },
+        WhichKeyDesc = { fg = colors.blue, style = "italic" },
+        WhichKeySeperator = { fg = colors.fg },
+        WhichKeyFloating = { bg = colors.float },
+        WhichKeyFloat = { bg = colors.float },
+    },
+
+    LspSaga = {
+        DiagnosticError = { fg = colors.error },
+        DiagnosticWarning = { fg = colors.yellow },
+        DiagnosticInformation = { fg = colors.paleblue },
+        DiagnosticHint = { fg = colors.purple },
+        DiagnosticTruncateLine = { fg = colors.fg },
+        LspFloatWinNormal = { bg = colors.bg },
+        LspFloatWinBorder = { fg = colors.purple },
+        LspSagaBorderTitle = { fg = colors.cyan },
+        LspSagaHoverBorder = { fg = colors.paleblue },
+        LspSagaRenameBorder = { fg = colors.green },
+        LspSagaDefPreviewBorder = { fg = colors.green },
+        LspSagaCodeActionBorder = { fg = colors.blue },
+        LspSagaFinderSelection = { fg = colors.green },
+        LspSagaCodeActionTitle = { fg = colors.paleblue },
+        LspSagaCodeActionContent = { fg = colors.purple },
+        LspSagaSignatureHelpBorder = { fg = colors.pink },
+        ReferencesCount = { fg = colors.purple },
+        DefinitionCount = { fg = colors.purple },
+        DefinitionIcon = { fg = colors.blue },
+        ReferencesIcon = { fg = colors.blue },
+        TargetWord = { fg = colors.cyan },
+    },
+
+    BufferLine = {
+        BufferLineIndicatorSelected = { fg = colors.accent },
+        BufferLineFill = { bg = colors.bg_alt },
+    },
+
+    Sneak = {
+        Sneak = { fg = colors.bg, bg = colors.accent },
+        SneakScope = { bg = colors.selection },
+    },
+
+    IndentBlankline = {
+        IndentBlanklineChar = { fg = colors.indentline },
+        IndentBlanklineContextChar = { fg = colors.indentline },
+    },
+
+    NvimDap = {
+        DapBreakpoint = { fg = colors.red },
+        DapStopped = { fg = colors.green },
+    },
+
+    DashboardNvim = {
+        DashboardCenter = { fg = colors.cyan },
+        DashboardFooter = { fg = colors.green, style = "italic" },
+        DashboardHeader = { fg = colors.red },
+        DashboardShortCut = { fg = colors.blue },
+    },
+}
+
+-- Options:
+
+if vim.g.seoul256_disable_background == true then
+    M.editor.Normal = { fg = colors.fg, bg = colors.none }
+    M.editor.SignColumn = { fg = colors.fg, bg = colors.none }
+    M.editor.NormalFloat = { fg = colors.fg, bg = colors.none }
+    M.editor.Pmenu = { fg = colors.text, bg = colors.none }
+    M.plugins.Telescope.TelescopeNormal = { fg = colors.fg, bg = colors.none }
 end
 
-
-theme.loadEditor = function ()
-    -- Editor highlight groups
-
-	local editor = {
-		NormalFloat =			{ fg = seoul256.fg, bg = seoul256.float }, -- normal text and background color
-		ColorColumn =			{ fg = seoul256.none, bg = seoul256.active }, --  used for the columns set with 'colorcolumn'
-		Conceal =				{ fg = seoul256.disabled }, -- placeholder characters substituted for concealed text (see 'conceallevel')
-		Cursor =				{ fg = seoul256.cursor, bg = seoul256.none, style = 'reverse' }, -- the character under the cursor
-		CursorIM =				{ fg = seoul256.cursor, bg = seoul256.none, style = 'reverse' }, -- like Cursor, but used when in IME mode
-		Directory =				{ fg = seoul256.blue, bg = seoul256.none }, -- directory names (and other special names in listings)
-		DiffAdd =				{ fg = seoul256.green, bg = seoul256.none, style = 'reverse' }, -- diff mode: Added line
-		DiffChange =			{ fg = seoul256.orange, bg = seoul256.none, style = 'reverse' }, --  diff mode: Changed line
-		DiffDelete =			{ fg = seoul256.red, bg = seoul256.none, style = 'reverse' }, -- diff mode: Deleted line
-		DiffText =				{ fg = seoul256.yellow, bg = seoul256.none, style = 'reverse' }, -- diff mode: Changed text within a changed line
-		EndOfBuffer =			{ fg = seoul256.disabled },
-		ErrorMsg =				{ fg = seoul256.none },
-		Folded =				{ fg = seoul256.green, bg = seoul256.bg_alt, style = 'italic' },
-		FoldColumn =			{ fg = seoul256.blue },
-		IncSearch =				{ fg = seoul256.highlight, bg = seoul256.white, style = 'reverse' },
-		LineNr =				{ fg = seoul256.line_numbers },
-		CursorLineNr =			{ fg = seoul256.accent },
-		MatchParen =			{ fg = seoul256.yellow, bg = seoul256.none, style = 'bold' },
-		ModeMsg =				{ fg = seoul256.accent },
-		MoreMsg =				{ fg = seoul256.accent },
-		NonText =				{ fg = seoul256.disabled },
-		Pmenu =					{ fg = seoul256.text, bg = seoul256.contrast },
-		PmenuSel =				{ fg = seoul256.accent, bg = seoul256.active },
-		PmenuSbar =				{ fg = seoul256.text, bg = seoul256.contrast },
-		PmenuThumb =			{ fg = seoul256.fg, bg = seoul256.accent },
-		Question =				{ fg = seoul256.green },
-		QuickFixLine =			{ fg = seoul256.highlight, bg = seoul256.white, style = 'reverse' },
-		qfLineNr =				{ fg = seoul256.highlight, bg = seoul256.white, style = 'reverse' },
-		Search =				{ fg = seoul256.highlight, bg = seoul256.white, style = 'reverse' },
-		SpecialKey =			{ fg = seoul256.purple },
-		SpellBad =				{ fg = seoul256.red, bg = seoul256.none, style = 'italic,undercurl' },
-		SpellCap =				{ fg = seoul256.blue, bg = seoul256.none, style = 'italic,undercurl' },
-		SpellLocal =			{ fg = seoul256.cyan, bg = seoul256.none, style = 'italic,undercurl' },
-		SpellRare =				{ fg = seoul256.purple, bg = seoul256.none, style = 'italic,undercurl' },
-		StatusLine =			{ fg = seoul256.fg, bg = seoul256.bg_alt},
-		StatusLineNC =  		{ fg = seoul256.text, bg = seoul256.disabled },
-		StatusLineTerm =		{ fg = seoul256.fg, bg = seoul256.bg_alt},
-		StatusLineTermNC =		{ fg = seoul256.text, bg = seoul256.disabled },
-		TabLineFill =			{ fg = seoul256.fg },
-		TablineSel =			{ fg = seoul256.bg, bg = seoul256.accent },
-		Tabline =				{ fg = seoul256.fg },
-		Title =					{ fg = seoul256.green, bg = seoul256.none, style = 'bold' },
-		Visual =				{ fg = seoul256.none, bg = seoul256.selection },
-		VisualNOS =				{ fg = seoul256.none, bg = seoul256.selection },
-		WarningMsg =			{ fg = seoul256.yellow },
-		WildMenu =				{ fg = seoul256.orange, bg = seoul256.none, style = 'bold' },
-		CursorColumn =			{ fg = seoul256.none, bg = seoul256.active },
-		CursorLine =			{ fg = seoul256.none, bg = seoul256.none },
-		ToolbarLine =			{ fg = seoul256.fg, bg = seoul256.bg_alt },
-		ToolbarButton =			{ fg = seoul256.fg, bg = seoul256.none, style = 'bold' },
-		NormalMode =			{ fg = seoul256.accent, bg = seoul256.none, style = 'reverse' },
-		InsertMode =			{ fg = seoul256.green, bg = seoul256.none, style = 'reverse' },
-		ReplacelMode =			{ fg = seoul256.red, bg = seoul256.none, style = 'reverse' },
-		VisualMode =			{ fg = seoul256.purple, bg = seoul256.none, style = 'reverse' },
-		CommandMode =			{ fg = seoul256.gray, bg = seoul256.none, style = 'reverse' },
-		Warnings =				{ fg = seoul256.yellow },
-
-        healthError =           { fg = seoul256.error },
-        healthSuccess =         { fg = seoul256.green },
-        healthWarning =         { fg = seoul256.yellow },
-
-        -- Dashboard
-        DashboardShortCut =                     { fg = seoul256.blue },
-        DashboardHeader =                       { fg = seoul256.red },
-        DashboardCenter =                       { fg = seoul256.cyan },
-        DashboardFooter =                       { fg = seoul256.green, style = "italic" },
-
-	}
-
-    -- Options:
-
-    --Set transparent background
-    if vim.g.seoul256_disable_background == true then
-		editor.Normal =				{ fg = seoul256.fg, bg = seoul256.none } -- normal text and background color
-		editor.SignColumn =			{ fg = seoul256.fg, bg = seoul256.none }
-    else
-		editor.Normal =				{ fg = seoul256.fg, bg = seoul256.bg } -- normal text and background color
-		editor.SignColumn =			{ fg = seoul256.fg, bg = seoul256.bg }
-    end
-
-    -- Remove window split borders
-    if vim.g.seoul256_borders == true then
-		editor.VertSplit =				{ fg = seoul256.border }
-    else
-		editor.VertSplit =				{ fg = seoul256.bg }
-    end
-
-    return editor
+if vim.g.seoul256_italic_comments == true then
+    M.syntax.Comment = { fg = colors.green, bg = colors.none, style = "italic" }
+    M.treesitter.TSComment = { fg = colors.green, bg = colors.none, style = "italic" }
 end
 
-theme.loadTerminal = function ()
-
-	vim.g.terminal_color_0 = seoul256.black
-	vim.g.terminal_color_1 = seoul256.red
-	vim.g.terminal_color_2 = seoul256.green
-	vim.g.terminal_color_3 = seoul256.yellow
-	vim.g.terminal_color_4 = seoul256.blue
-	vim.g.terminal_color_5 = seoul256.purple
-	vim.g.terminal_color_6 = seoul256.cyan
-	vim.g.terminal_color_7 = seoul256.white
-	vim.g.terminal_color_8 = seoul256.gray
-	vim.g.terminal_color_9 = seoul256.red
-	vim.g.terminal_color_10 = seoul256.green
-	vim.g.terminal_color_11 = seoul256.yellow
-	vim.g.terminal_color_12 = seoul256.blue
-	vim.g.terminal_color_13 = seoul256.purple
-	vim.g.terminal_color_14 = seoul256.cyan
-	vim.g.terminal_color_15 = seoul256.white
-
+if vim.g.seoul256_italic_keywords == true then
+    M.syntax.Conditional = { fg = colors.purple, bg = colors.none, style = "italic" }
+    M.syntax.Keyword = { fg = colors.purple, bg = colors.none, style = "italic" }
+    M.syntax.Repeat = { fg = colors.purple, bg = colors.none, style = "italic" }
+    M.treesitter.TSConditional = { fg = colors.purple, style = "italic" }
+    M.treesitter.TSKeyword = { fg = colors.purple, style = "italic" }
+    M.treesitter.TSRepeat = { fg = colors.purple, style = "italic" }
+    M.treesitter.TSKeywordFunction = { fg = colors.purple, style = "italic" }
 end
 
-theme.loadTreeSitter = function ()
-    -- TreeSitter highlight groups
-
-    local treesitter = {
-        TSAnnotation =              { fg = seoul256.red },    -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
-        TSAttribute =               { fg = seoul256.yellow },    -- (unstable) TODO: docs
-        TSBoolean=                  { fg = seoul256.orange },    -- For booleans.
-        TSCharacter=                { fg = seoul256.orange },    -- For characters.
-        TSConstructor =             { fg = seoul256.purple }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-        TSConstant =                { fg = seoul256.yellow },    -- For constants
-        TSConstBuiltin =            { fg = seoul256.blue },    -- For constant that are built in the language: `nil` in Lua.
-        TSConstMacro =              { fg = seoul256.blue },    -- For constants that are defined by macros: `NULL` in C.
-        TSError =                   { fg = seoul256.error },    -- For syntax/parser errors.
-        TSException =               { fg = seoul256.yellow },    -- For exception related keywords.
-        TSField =                   { fg = seoul256.gray }, -- For fields.
-        TSFloat =                   { fg = seoul256.red },    -- For floats.
-        TSFuncMacro =               { fg = seoul256.blue },    -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-        TSInclude =                 { fg = seoul256.cyan },    -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-        TSLabel =                   { fg = seoul256.red }, -- For labels: `label:` in C and `:label:` in Lua.
-        TSNamespace =               { fg = seoul256.yellow },    -- For identifiers referring to modules and namespaces.
-        --TSNone =                    { },    -- TODO: docs
-        TSNumber =                  { fg = seoul256.orange },    -- For all numbers
-        TSOperator =                { fg = seoul256.cyan }, -- For any operator: `+`, but also `->` and `*` in C.
-        TSParameter =               { fg = seoul256.paleblue }, -- For parameters of a function.
-        TSParameterReference=       { fg = seoul256.paleblue },    -- For references to parameters of a function.
-        TSProperty =                { fg = seoul256.paleblue }, -- Same as `TSField`.
-        TSPunctDelimiter =          { fg = seoul256.cyan }, -- For delimiters ie: `.`
-        TSPunctBracket =            { fg = seoul256.cyan }, -- For brackets and parens.
-        TSPunctSpecial =            { fg = seoul256.cyan }, -- For special punctutation that does not fall in the catagories before.
-        TSString =                  { fg = seoul256.string },    -- For strings.
-        TSStringRegex =             { fg = seoul256.blue }, -- For regexes.
-        TSStringEscape =            { fg = seoul256.disabled }, -- For escape characters within a string.
-        TSSymbol =                  { fg = seoul256.yellow },    -- For identifiers referring to symbols or atoms.
-        TSType =                    { fg = seoul256.purple },    -- For types.
-        TSTypeBuiltin =             { fg = seoul256.purple },    -- For builtin types.
-        TSTag =                     { fg = seoul256.red },    -- Tags like html tag names.
-        TSTagDelimiter =            { fg = seoul256.yellow },    -- Tag delimiter like `<` `>` `/`
-        TSText =                    { fg = seoul256.text },    -- For strings considered text in a markup language.
-        TSTextReference =           { fg = seoul256.yellow }, -- FIXME
-        TSEmphasis =                { fg = seoul256.paleblue },    -- For text to be represented with emphasis.
-        TSUnderline =               { fg = seoul256.fg, bg = seoul256.none, style = 'underline' },    -- For text to be represented with an underline.
-        TSStrike =                  { },    -- For strikethrough text.
-        TSTitle =                   { fg = seoul256.paleblue, bg = seoul256.none, style = 'bold' },    -- Text that is part of a title.
-        TSLiteral =                 { fg = seoul256.fg },    -- Literal text.
-        TSURI =                     { fg = seoul256.link },    -- Any URI like a link or email.
-    }
-
-    -- Options:
-
-    -- Italic comments
-    if vim.g.seoul256_italic_comments == true then
-        treesitter.TSComment=                  { fg = seoul256.green , bg = seoul256.none, style = 'italic' }    -- For comment blocks.
-    else
-        treesitter.TSComment=                  { fg = seoul256.green }    -- For comment blocks.
-    end
-
-    if vim.g.seoul256_italic_keywords == true then
-        treesitter.TSConditional =             { fg = seoul256.purple, style = 'italic' }    -- For keywords related to conditionnals.
-        treesitter.TSKeyword =                 { fg = seoul256.purple, style = 'italic' } -- For keywords that don't fall in previous categories.
-        treesitter.TSRepeat =                  { fg = seoul256.purple, style = 'italic' }    -- For keywords related to loops.
-        treesitter.TSKeywordFunction =         { fg = seoul256.purple, style = 'italic' } -- For keywords used to define a fuction.
-    else
-        treesitter.TSConditional =             { fg = seoul256.purple }    -- For keywords related to conditionnals.
-        treesitter.TSKeyword =                 { fg = seoul256.purple } -- For keywords that don't fall in previous categories.
-        treesitter.TSRepeat =                  { fg = seoul256.purple }    -- For keywords related to loops.
-        treesitter.TSKeywordFunction =         { fg = seoul256.purple } -- For keywords used to define a fuction.
-    end
-
-    if vim.g.seoul256_italic_functions == true then
-        treesitter.TSFunction =                { fg = seoul256.blue, style = 'italic' }    -- For fuction (calls and definitions).
-        treesitter.TSMethod =                  { fg = seoul256.blue, style = 'italic' }    -- For method calls and definitions.
-        treesitter.TSFuncBuiltin =             { fg = seoul256.cyan, style = 'italic' }    -- For builtin functions: `table.insert` in Lua.
-    else
-        treesitter.TSFunction =                { fg = seoul256.blue }    -- For fuction (calls and definitions).
-        treesitter.TSMethod =                  { fg = seoul256.blue }    -- For method calls and definitions.
-        treesitter.TSFuncBuiltin =             { fg = seoul256.cyan }    -- For builtin functions: `table.insert` in Lua.
-    end
-
-    if vim.g.seoul256_italic_variables == true then
-        treesitter.TSVariable =                { fg = seoul256.gray, style = 'italic' } -- Any variable name that does not have another highlight.
-        treesitter.TSVariableBuiltin =         { fg = seoul256.gray, style = 'italic' } -- Variable names that are defined by the languages, like `this` or `self`.
-    else
-        treesitter.TSVariable =                { fg = seoul256.gray } -- Any variable name that does not have another highlight.
-        treesitter.TSVariableBuiltin =         { fg = seoul256.gray } -- Variable names that are defined by the languages, like `this` or `self`.
-    end
-
-    return treesitter
-
+if vim.g.seoul256_italic_functions == true then
+    M.syntax.Function = { fg = colors.blue, bg = colors.none, style = "italic" }
+    M.treesitter.TSFunction = { fg = colors.blue, style = "italic" }
+    M.treesitter.TSMethod = { fg = colors.blue, style = "italic" }
+    M.treesitter.TSFuncBuiltin = { fg = colors.cyan, style = "italic" }
 end
 
-theme.loadLSP = function ()
-    -- Lsp highlight groups
-
-    local lsp = {
-        LspDiagnosticsDefaultError =            { fg = seoul256.error }, -- used for "Error" diagnostic virtual text
-        LspDiagnosticsSignError =               { fg = seoul256.error }, -- used for "Error" diagnostic signs in sign column
-        LspDiagnosticsFloatingError =           { fg = seoul256.error }, -- used for "Error" diagnostic messages in the diagnostics float
-        LspDiagnosticsVirtualTextError =        { fg = seoul256.error }, -- Virtual text "Error"
-        LspDiagnosticsUnderlineError =          { style = 'undercurl', sp = seoul256.error }, -- used to underline "Error" diagnostics.
-        LspDiagnosticsDefaultWarning =          { fg = seoul256.yellow}, -- used for "Warning" diagnostic signs in sign column
-        LspDiagnosticsSignWarning =             { fg = seoul256.yellow}, -- used for "Warning" diagnostic signs in sign column
-        LspDiagnosticsFloatingWarning =         { fg = seoul256.yellow}, -- used for "Warning" diagnostic messages in the diagnostics float
-        LspDiagnosticsVirtualTextWarning =      { fg = seoul256.yellow}, -- Virtual text "Warning"
-        LspDiagnosticsUnderlineWarning =        { style = 'undercurl', sp = seoul256.yellow }, -- used to underline "Warning" diagnostics.
-        LspDiagnosticsDefaultInformation =      { fg = seoul256.paleblue }, -- used for "Information" diagnostic virtual text
-        LspDiagnosticsSignInformation =         { fg = seoul256.paleblue },  -- used for "Information" diagnostic signs in sign column
-        LspDiagnosticsFloatingInformation =     { fg = seoul256.paleblue }, -- used for "Information" diagnostic messages in the diagnostics float
-        LspDiagnosticsVirtualTextInformation =  { fg = seoul256.paleblue }, -- Virtual text "Information"
-        LspDiagnosticsUnderlineInformation =    { style = 'undercurl', sp = seoul256.paleblue }, -- used to underline "Information" diagnostics.
-        LspDiagnosticsDefaultHint =             { fg = seoul256.purple  },  -- used for "Hint" diagnostic virtual text
-        LspDiagnosticsSignHint =                { fg = seoul256.purple  }, -- used for "Hint" diagnostic signs in sign column
-        LspDiagnosticsFloatingHint =            { fg = seoul256.purple  }, -- used for "Hint" diagnostic messages in the diagnostics float
-        LspDiagnosticsVirtualTextHint =         { fg = seoul256.purple  }, -- Virtual text "Hint"
-        LspDiagnosticsUnderlineHint =           { style = 'undercurl', sp = seoul256.paleblue }, -- used to underline "Hint" diagnostics.
-        LspReferenceText =                      { fg = seoul256.accent, bg = seoul256.highlight }, -- used for highlighting "text" references
-        LspReferenceRead =                      { fg = seoul256.accent, bg = seoul256.highlight }, -- used for highlighting "read" references
-        LspReferenceWrite =                     { fg = seoul256.accent, bg = seoul256.highlight }, -- used for highlighting "write" references
-    }
-
-    return lsp
-
+if vim.g.seoul256_italic_variables == true then
+    M.syntax.Identifier = { fg = colors.pink, bg = colors.none, style = "italic" }
+    M.treesitter.TSVariable = { fg = colors.gray, style = "italic" }
+    M.treesitter.TSVariableBuiltin = { fg = colors.gray, style = "italic" }
 end
 
-theme.loadPlugins = function()
-    -- Plugins highlight groups
-
-    local plugins = {
-
-        -- LspTrouble
-        LspTroubleText =                        { fg = seoul256.text },
-        LspTroubleCount =                       { fg = seoul256.purple, bg = seoul256.active },
-        LspTroubleNormal =                      { fg = seoul256.fg, bg = seoul256.sidebar },
-
-        -- Diff
-        diffAdded =                             { fg = seoul256.green },
-        diffRemoved =                           { fg = seoul256.red },
-        diffChanged =                           { fg = seoul256.yellow },
-        diffOldFile =                           { fg = seoul256.yelow },
-        diffNewFile =                           { fg = seoul256.orange },
-        diffFile =                              { fg = seoul256.blue },
-        diffLine =                              { fg = seoul256.green },
-        diffIndexLine =                         { fg = seoul256.purple },
-
-        -- Neogit
-        NeogitBranch =                          { fg = seoul256.paleblue },
-        NeogitRemote =                          { fg = seoul256.purple },
-        NeogitHunkHeader =                      { fg = seoul256.fg, bg = seoul256.highlight },
-        NeogitHunkHeaderHighlight =             { fg = seoul256.blue, bg = seoul256.contrast },
-        NeogitDiffContextHighlight =            { fg = seoul256.text, bg = seoul256.contrast },
-        NeogitDiffDeleteHighlight =             { fg = seoul256.red },
-        NeogitDiffAddHighlight =                { fg = seoul256.green },
-
-        -- GitGutter
-        GitGutterAdd =                          { fg = seoul256.green }, -- diff mode: Added line |diff.txt|
-        GitGutterChange =                       { fg = seoul256.yellow }, -- diff mode: Changed line |diff.txt|
-        GitGutterDelete =                       { fg = seoul256.red }, -- diff mode: Deleted line |diff.txt|
-
-        -- GitSigns
-        GitSignsAdd =                           { fg = seoul256.green }, -- diff mode: Added line |diff.txt|
-        GitSignsAddNr =                         { fg = seoul256.green }, -- diff mode: Added line |diff.txt|
-        GitSignsAddLn =                         { fg = seoul256.green }, -- diff mode: Added line |diff.txt|
-        GitSignsChange =                        { fg = seoul256.yellow }, -- diff mode: Changed line |diff.txt|
-        GitSignsChangeNr =                      { fg = seoul256.yellow }, -- diff mode: Changed line |diff.txt|
-        GitSignsChangeLn =                      { fg = seoul256.yellow }, -- diff mode: Changed line |diff.txt|
-        GitSignsDelete =                        { fg = seoul256.red }, -- diff mode: Deleted line |diff.txt|
-        GitSignsDeleteNr =                      { fg = seoul256.red }, -- diff mode: Deleted line |diff.txt|
-        GitSignsDeleteLn =                      { fg = seoul256.red }, -- diff mode: Deleted line |diff.txt|
-
-        -- Telescope
-        TelescopePromptBorder =                 { fg = seoul256.cyan },
-        TelescopeResultsBorder =                { fg = seoul256.purple },
-        TelescopePreviewBorder =                { fg = seoul256.green },
-        TelescopeSelectionCaret =               { fg = seoul256.purple },
-        TelescopeSelection =                    { fg = seoul256.purple },
-        TelescopeMatching =                     { fg = seoul256.cyan },
-        TelescopeNormal =                       { fg = seoul256.fg, bg = seoul256.float },
-
-        -- NvimTree
-        NvimTreeRootFolder =                    { fg = seoul256.blue, style = "bold" },
-        NvimTreeGitDirty =                      { fg = seoul256.yellow },
-        NvimTreeGitNew =                        { fg = seoul256.green },
-        NvimTreeImageFile =                     { fg = seoul256.yellow },
-        NvimTreeExecFile =                      { fg = seoul256.green },
-        NvimTreeSpecialFile =                   { fg = seoul256.purple , style = "underline" },
-        NvimTreeFolderName=                     { fg = seoul256.paleblue },
-        NvimTreeEmptyFolderName=                { fg = seoul256.disabled },
-        NvimTreeFolderIcon=                     { fg = seoul256.accent },
-        NvimTreeIndentMarker =                  { fg  = seoul256.disabled },
-        LspDiagnosticsError =                   { fg = seoul256.error },
-        LspDiagnosticsWarning =                 { fg = seoul256.yellow },
-        LspDiagnosticsInformation =             { fg = seoul256.paleblue },
-        LspDiagnosticsHint =                    { fg = seoul256.purple },
-
-        -- WhichKey
-        WhichKey =                              { fg = seoul256.accent , style = 'bold'},
-        WhichKeyGroup =                         { fg = seoul256.text },
-        WhichKeyDesc =                          { fg = seoul256.blue, style = 'italic' },
-        WhichKeySeperator =                     { fg = seoul256.fg },
-        WhichKeyFloating =                      { bg = seoul256.float },
-        WhichKeyFloat =                         { bg = seoul256.float },
-
-        -- LspSaga
-        DiagnosticError =                       { fg = seoul256.error },
-        DiagnosticWarning =                     { fg = seoul256.yellow },
-        DiagnosticInformation =                 { fg = seoul256.paleblue },
-        DiagnosticHint =                        { fg = seoul256.purple },
-        DiagnosticTruncateLine =                { fg = seoul256.fg },
-        LspFloatWinNormal =                     { bg = seoul256.bg },
-        LspFloatWinBorder =                     { fg = seoul256.purple },
-        LspSagaBorderTitle =                    { fg = seoul256.cyan },
-        LspSagaHoverBorder =                    { fg = seoul256.paleblue },
-        LspSagaRenameBorder =                   { fg = seoul256.green },
-        LspSagaDefPreviewBorder =               { fg = seoul256.green },
-        LspSagaCodeActionBorder =               { fg = seoul256.blue },
-        LspSagaFinderSelection =                { fg = seoul256.green },
-        LspSagaCodeActionTitle =                { fg = seoul256.paleblue },
-        LspSagaCodeActionContent =              { fg = seoul256.purple },
-        LspSagaSignatureHelpBorder =            { fg = seoul256.pink },
-        ReferencesCount =                       { fg = seoul256.purple },
-        DefinitionCount =                       { fg = seoul256.purple },
-        DefinitionIcon =                        { fg = seoul256.blue },
-        ReferencesIcon =                        { fg = seoul256.blue },
-        TargetWord =                            { fg = seoul256.cyan },
-
-        -- BufferLine
-        BufferLineIndicatorSelected =           { fg = seoul256.accent },
-        BufferLineFill =                        { bg = seoul256.bg_alt },
-
-        -- Sneak
-        Sneak =                                 { fg = seoul256.bg, bg = seoul256.accent },
-        SneakScope =                            { bg = seoul256.selection },
-
-        -- Indent Blankline
-        IndentBlanklineChar =                   { fg = seoul256.indentline },
-        IndentBlanklineContextChar =            { fg = seoul256.indentline },
-
-	 -- Nvim dap
-         DapBreakpoint =                         { fg = seoul256.red },
-         DapStopped =                            { fg = seoul256.green },
-    }
-
-    -- Options:
-
-    -- Disable nvim-tree background
-        if vim.g.seoul256_disable_background == true then
-            plugins.NvimTreeNormal =                        { fg = seoul256.fg, bg = seoul256.none }
-        else
-            plugins.NvimTreeNormal =                        { fg = seoul256.fg, bg = seoul256.sidebar }
-        end
-
-    return plugins
-
+if vim.g.seoul256_borders == true then
+    M.editor.VertSplit = { fg = colors.border }
 end
 
-return theme
+if vim.g.seoul256_hl_current_line == true then
+    M.editor.CursorLine = { fg = colors.none, bg = colors.active }
+end
+
+return M
