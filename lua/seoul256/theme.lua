@@ -92,8 +92,8 @@ M.editor = {
     TabLineFill = { fg = colors.fg },
     Tabline = { fg = colors.fg },
     TablineSel = { fg = colors.bg, bg = colors.accent },
-    TermCursor = {}, -- TODO
-    TermCursorNC = {}, -- TODO
+    TermCursor = { fg = colors.cursor, bg = colors.none, style = "reverse" }, -- TODO
+    TermCursorNC = { fg = colors.cursor, bg = colors.none, style = "reverse" }, -- TODO
     Title = { fg = colors.green, bg = colors.none, style = "bold" },
     VertSplit = { fg = colors.bg },
     Visual = { fg = colors.none, bg = colors.selection },
