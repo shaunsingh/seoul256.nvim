@@ -154,7 +154,7 @@ M.treesitter = {
     TSRepeat = { fg = colors.purple },
     TSStrike = {}, -- TODO
     TSString = { fg = colors.string },
-    TSStringEscape = { fg = colors.disabled },
+    TSStringEscape = { fg = colors.fg },
     TSStringRegex = { fg = colors.blue },
     TSStringSpecial = {}, -- TODO
     TSStrong = {}, -- TODO
