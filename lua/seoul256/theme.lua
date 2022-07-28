@@ -18,7 +18,7 @@ M.syntax = {
     Float = { fg = colors.orange },
     Function = { fg = colors.blue },
     Identifier = { fg = colors.pink },
-    Ignore = { fg = colors.disabled },
+    Ignore = { fg = colors.fg },
     Include = { fg = colors.blue },
     Keyword = { fg = colors.purple },
     Label = { fg = colors.purple },
@@ -46,7 +46,7 @@ M.syntax = {
 -- Type `:h highlight-groups` for more informations
 M.editor = {
     ColorColumn = { fg = colors.none, bg = colors.active },
-    Conceal = { fg = colors.disabled },
+    Conceal = { fg = colors.fg },
     Cursor = { fg = colors.cursor, bg = colors.none, style = "reverse" },
     lCursor = {}, -- TODO
     CursorColumn = { fg = colors.none, bg = colors.active },
@@ -58,7 +58,7 @@ M.editor = {
     DiffDelete = { fg = colors.red, bg = colors.none, style = "reverse" },
     DiffText = { fg = colors.yellow, bg = colors.none, style = "reverse" },
     Directory = { fg = colors.blue, bg = colors.none },
-    EndOfBuffer = { fg = colors.disabled },
+    EndOfBuffer = { fg = colors.fg },
     ErrorMsg = { fg = colors.none },
     FoldColumn = { fg = colors.blue },
     Folded = { fg = colors.green, bg = colors.bg_alt, style = "italic" },
@@ -69,7 +69,7 @@ M.editor = {
     MoreMsg = { fg = colors.accent },
     MsgArea = {}, -- TODO
     MsgSeparator = {}, -- TODO
-    NonText = { fg = colors.disabled },
+    NonText = { fg = colors.fg },
     Normal = { fg = colors.fg, bg = colors.bg },
     NormalFloat = { fg = colors.fg, bg = colors.float },
     NormalNC = {}, -- TODO
@@ -87,13 +87,13 @@ M.editor = {
     SpellLocal = { fg = colors.cyan, bg = colors.none, style = "undercurl,italic" },
     SpellRare = { fg = colors.purple, bg = colors.none, style = "undercurl,italic" },
     StatusLine = { fg = colors.fg, bg = colors.bg_alt },
-    StatusLineNC = { fg = colors.text, bg = colors.disabled },
+    StatusLineNC = { fg = colors.text, bg = colors.fg },
     Substitute = {}, -- TODO
     TabLineFill = { fg = colors.fg },
     Tabline = { fg = colors.fg },
     TablineSel = { fg = colors.bg, bg = colors.accent },
-    TermCursor = {}, -- TODO
-    TermCursorNC = {}, -- TODO
+    TermCursor = { fg = colors.cursor, bg = colors.none, style = "reverse" },
+    TermCursorNC = { fg = colors.cursor, bg = colors.none, style = "reverse" },
     Title = { fg = colors.green, bg = colors.none, style = "bold" },
     VertSplit = { fg = colors.bg },
     Visual = { fg = colors.none, bg = colors.selection },
@@ -154,7 +154,7 @@ M.treesitter = {
     TSRepeat = { fg = colors.purple },
     TSStrike = {}, -- TODO
     TSString = { fg = colors.string },
-    TSStringEscape = { fg = colors.disabled },
+    TSStringEscape = { fg = colors.fg },
     TSStringRegex = { fg = colors.blue },
     TSStringSpecial = {}, -- TODO
     TSStrong = {}, -- TODO
@@ -268,9 +268,9 @@ M.plugins = {
         NvimTreeExecFile = { fg = colors.green },
         NvimTreeSpecialFile = { fg = colors.purple, style = "underline" },
         NvimTreeFolderName = { fg = colors.paleblue },
-        NvimTreeEmptyFolderName = { fg = colors.disabled },
+        NvimTreeEmptyFolderName = { fg = colors.fg },
         NvimTreeFolderIcon = { fg = colors.accent },
-        NvimTreeIndentMarker = { fg = colors.disabled },
+        NvimTreeIndentMarker = { fg = colors.fg },
 
         -- TODO not sure this goes here
         LspDiagnosticsError = { fg = colors.error },
