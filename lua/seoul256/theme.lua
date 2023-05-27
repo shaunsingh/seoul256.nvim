@@ -33,7 +33,7 @@ M.syntax = {
     SpecialComment = { fg = colors.gray },
     Statement = { fg = colors.pink },
     StorageClass = { fg = colors.cyan },
-    String = { fg = colors.string, bg = colors.none, style = "italic" },
+    String = { fg = colors.string, bg = colors.none },
     Structure = { fg = colors.puple },
     Tag = { fg = colors.red },
     Todo = { fg = colors.yellow, bg = colors.none, style = "bold,italic" },
@@ -67,7 +67,7 @@ M.editor = {
     MatchParen = { fg = colors.yellow, bg = colors.none, style = "bold" },
     ModeMsg = { fg = colors.accent },
     MoreMsg = { fg = colors.accent },
-    MsgArea = {}, -- TODO
+    MsgArea = {},      -- TODO
     MsgSeparator = {}, -- TODO
     NonText = { fg = colors.disabled },
     Normal = { fg = colors.fg, bg = colors.bg },
@@ -92,7 +92,7 @@ M.editor = {
     TabLineFill = { fg = colors.fg },
     Tabline = { fg = colors.fg },
     TablineSel = { fg = colors.bg, bg = colors.accent },
-    TermCursor = {}, -- TODO
+    TermCursor = {},   -- TODO
     TermCursorNC = {}, -- TODO
     Title = { fg = colors.green, bg = colors.none, style = "bold" },
     VertSplit = { fg = colors.bg },
@@ -120,9 +120,9 @@ M.treesitter = {
     TSConstMacro = { fg = colors.blue },
     TSConstant = { fg = colors.yellow },
     TSConstructor = { fg = colors.purple },
-    TSDanger = {}, -- TODO
+    TSDanger = {},          -- TODO
     TSEmphasis = { fg = colors.paleblue },
-    TSEnvironment = {}, -- TODO
+    TSEnvironment = {},     -- TODO
     TSEnvironmentName = {}, -- TODO
     TSError = { fg = colors.error },
     TSException = { fg = colors.yellow },
@@ -135,7 +135,7 @@ M.treesitter = {
     TSKeyword = { fg = colors.purple },
     TSKeywordFunction = { fg = colors.purple },
     TSKeywordOperator = {}, -- TODO
-    TSKeywordReturn = {}, -- TODO
+    TSKeywordReturn = {},   -- TODO
     TSLabel = { fg = colors.red },
     TSLiteral = { fg = colors.fg },
     TSMath = {}, -- TODO
@@ -157,7 +157,7 @@ M.treesitter = {
     TSStringEscape = { fg = colors.disabled },
     TSStringRegex = { fg = colors.blue },
     TSStringSpecial = {}, -- TODO
-    TSStrong = {}, -- TODO
+    TSStrong = {},        -- TODO
     TSSymbol = { fg = colors.yellow },
     TSTag = { fg = colors.red },
     TSTagAttribute = {}, -- TODO
@@ -384,6 +384,10 @@ end
 
 if vim.g.seoul256_hl_current_line == true then
     M.editor.CursorLine = { fg = colors.none, bg = colors.active }
+end
+
+if vim.g.seoul256_italic_string == true then
+    M.syntax.String = { fg = colors.string, bg = colors.none, style = "italic" }
 end
 
 return M
